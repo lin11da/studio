@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.Studioimg">
+    <!--    查询logourl-->
+    <select id="logourl" parameterType="com.example.pojo.entity.StudioLogo" resultType="com.example.pojo.entity.StudioLogo">
+        select * from thestudio.studio_logo
+    </select>
+
+
+    <!--    修改logourl-->
+    <update id="updatelogourl" parameterType="com.example.pojo.entity.StudioLogo" >
+        update thestudio.studio_logo set logo_url = #{logoUrl}, update_time=#{updateTime} where logo_id = #{logoId}
+    </update>
+
+
+    <!--    修改轮播图-->
+    <update id="updatehomeurl" parameterType="com.example.pojo.entity.StudioAdminHomePageImg" >
+        update thestudio.studio_admin_home_page_img set img_url = #{imgUrl}, update_time=#{updateTime} where img_id = #{imgId}
+    </update>
+
+    <select id="selecthomeurl"  resultType="com.example.pojo.entity.StudioAdminHomePageImg">
+        select * from thestudio.studio_admin_home_page_img
+    </select>
+</mapper>

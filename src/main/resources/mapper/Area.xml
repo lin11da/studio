@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.Area">
+    <!--    查询全部导航条-->
+    <select id="allarea"  resultType="com.example.pojo.entity.StudioRichText">
+        select * from thestudio.studio_rich_text
+    </select>
+
+    <!--    修改导航条信息-->
+    <update id="updatearea" parameterType="com.example.pojo.entity.StudioRichText" >
+        update thestudio.studio_rich_text set area_url = #{areaUrl}, update_time=#{updatetime} where area_id = #{areaId}
+    </update>
+
+</mapper>

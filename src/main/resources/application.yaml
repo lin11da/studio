@@ -1,0 +1,58 @@
+# Sa-Token配置
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: token
+  # token有效期，单位s 默认30天, -1代表永不过期
+  timeout: 2592000
+  # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  activity-timeout: -1
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: false
+  # 不打印字符
+  is-print: false
+  # 关闭cookie功能
+  is-read-cookie: false
+  # 是否尝试从header里读取token
+  is-read-head: true
+  # 是否尝试从请求体里读取token
+  is-read-body: true
+  # sa-token-temp-jwt 模块的秘钥 （随便乱摁几个字母就行了）
+  # jwt-secret-key: Jeweewew+——#%&fdasfs
+
+
+spring:
+  datasource:
+    username: root
+    password: root
+#    username: thestudio
+#    password: nnhp2021TCH
+    url: jdbc:mysql://localhost:3306/thestudio?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+  servlet:
+    multipart:
+      max-file-size: 1024MB #单个文件上传大小
+      max-request-size: 2048MB #连续上传文件大小
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+mybatis:
+  type-aliases-package: com.example.pojo
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+server:
+  port: 8077
+
+

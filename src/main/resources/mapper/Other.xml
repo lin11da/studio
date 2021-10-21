@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.Other">
+<!--    添加页脚-->
+   <insert id="foothermanage" parameterType="com.example.pojo.entity.StudioFooter">
+       insert into thestudio.studio_footer(footerid,head, number, email, address, copyright, update_time, create_time)
+       VALUES  (#{footerid},#{head},#{number},#{email},#{address},#{copyright},#{update_time},#{create_time})
+   </insert>
+
+<!--    查看页脚 -->
+    <select id="selectfooter"  resultType="com.example.pojo.entity.StudioFooter">
+        select * from thestudio.studio_footer
+    </select>
+
+<!--    更新页脚-->
+    <update id="updatefooter" parameterType="com.example.pojo.entity.StudioFooter" >
+        update thestudio.studio_footer set head = #{head},number=#{number},email=#{email},address=#{address}, update_time=#{updatetime} where footerid = #{footerid}
+    </update>
+
+<!--    删除页脚-->
+    <delete id="deletefooter" parameterType="com.example.pojo.entity.StudioFooter">
+        delete from thestudio.studio_footer where footerid = #{footerid}
+    </delete>
+<!--    =================================================================================================================================================-->
+
+<!--    查询公告-->
+    <select id="selectannouncement" resultType="com.example.pojo.entity.StudioBulletinBoard">
+        select * from thestudio.studio_bulletin_board
+    </select>
+
+    <!--    更新公告-->
+    <update id="updateannouncement" parameterType="com.example.pojo.entity.StudioBulletinBoard" >
+        update thestudio.studio_bulletin_board set announcement = #{announcement},title=#{title}, update_time=#{updatetime} where announcement_id = #{announcement_id}
+    </update>
+
+    <!--    添加公告-->
+    <insert id="insertannouncement" parameterType="com.example.pojo.entity.StudioBulletinBoard">
+        insert into thestudio.studio_bulletin_board(announcement_id, announcement, title, update_time, create_time)
+        VALUES  (#{announcement_id},#{announcement},#{title},#{update_time},#{create_time})
+    </insert>
+
+    <!--    删除公告-->
+    <delete id="deleteannouncement" parameterType="com.example.pojo.entity.StudioBulletinBoard">
+        delete from thestudio.studio_bulletin_board where announcement_id = #{announcement_id}
+    </delete>
+
+<!--    ==========================================================================================================================================================-->
+
+<!--    插入荣誉-->
+    <insert id="inserthonorwall" parameterType="com.example.pojo.entity.StudioHonorWall">
+        insert into thestudio.studio_honor_wall(honor_id, honor, honor_img_url, playing_time, compete, project, update_time, create_time)
+        VALUES(#{honor_id},#{honor},#{honor_img_url},#{playing_time},#{compete},#{project},#{update_time},#{create_time})
+    </insert>
+
+<!--    查询全部荣誉-->
+    <select id="selecthonorwall" resultType="com.example.pojo.entity.StudioHonorWall">
+        select * from thestudio.studio_honor_wall
+    </select>
+
+    <!--    更新荣誉-->
+    <update id="updatehonorwall" parameterType="com.example.pojo.entity.StudioHonorWall" >
+        update thestudio.studio_honor_wall set honor = #{honor},honor_img_url=#{honor_img_url}, playing_time=#{playing_time}, compete=#{compete}, project=#{project}, update_time=#{update_time}   where honor_id = #{honor_id}
+    </update>
+<!--     删除某个荣誉-->
+    <delete id="deletehonorwall" parameterType="com.example.pojo.entity.StudioHonorWall">
+        delete from thestudio.studio_honor_wall where honor_id = #{honor_id};
+    </delete>
+    
+<!--    ====================================================================================================================================================================-->
+
+<!--    添加成员介绍-->
+    <insert id="insertmembers" parameterType="com.example.pojo.entity.StudioMember">
+        insert into thestudio.studio_member(member_id, member_name, member_img_url, member_about, time_line, update_time, create_time)
+        VALUES (#{member_id},#{member_name},#{member_img_url},#{member_about},#{time_line},#{update_time},#{create_time})
+    </insert>
+
+<!--    查看成员介绍-->
+    <select id="selectmembers" resultType = "com.example.pojo.entity.StudioMember">
+        select member_id, member_name, member_img_url, member_about, update_time, create_time, substring(studio_member.time_line, 1, 4) as time_line from thestudio.studio_member
+    </select>
+
+<!--    更改成员介绍-->
+    <update id="updatemembers" parameterType="com.example.pojo.entity.StudioMember" >
+        update thestudio.studio_member set member_name = #{member_name},member_name=#{member_name}, member_img_url=#{member_img_url}, time_line=#{time_line}, update_time=#{update_time} where member_id = #{member_id}
+    </update>
+
+    <!--     删除成员介绍-->
+    <delete id="deletemembers" parameterType="com.example.pojo.entity.StudioMember">
+        delete from thestudio.studio_member where member_id = #{member_id};
+    </delete>
+
+<!--    =====================================================================================================================================================================-->
+
+<!--    添加网站奉献者信息-->
+    <insert id="insertdedicator" parameterType="com.example.pojo.entity.StudioWebDedicator">
+        insert into thestudio.studio_web_dedicator(dedicator_id, dedicator_name, dedicator_img_url, dedicator_about, timeline, update_time, create_time)
+        VALUES (#{dedicator_id},#{dedicator_name},#{dedicator_img_url},#{dedicator_about},#{timeline},#{update_time},#{create_time})
+    </insert>
+
+    <!--    查看网站奉献者信息-->
+    <select id="selectdedicator" resultType = "com.example.pojo.entity.StudioWebDedicator">
+        select dedicator_id, dedicator_name, dedicator_img_url, dedicator_about, update_time, create_time, substring(studio_web_dedicator.timeline, 1, 4) as time_line from thestudio.studio_web_dedicator
+    </select>
+
+    <!--    更改网站奉献者信息-->
+    <update id="updatededicator" parameterType="com.example.pojo.entity.StudioWebDedicator" >
+        update thestudio.studio_web_dedicator set dedicator_name = #{dedicator_name},dedicator_img_url=#{dedicator_img_url}, dedicator_about=#{dedicator_about}, update_time=#{update_time}, timeline=#{timeline} where dedicator_id = #{dedicator_id}
+    </update>
+
+    <!--     删除网站奉献者信息-->
+    <delete id="deletededicator" parameterType="com.example.pojo.entity.StudioWebDedicator">
+        delete from thestudio.studio_web_dedicator where dedicator_id = #{dedicator_id};
+    </delete>
+
+<!--  ===============================================================================================================================================================================-->
+
+<!--    添加模块-->
+    <insert id="insertmodule" parameterType="com.example.pojo.entity.StudioModule" >
+        insert into thestudio.studio_module(module_id, module_name, update_time, create_time)
+        VALUES (#{module_id},#{module_name},#{update_time},#{create_time})
+    </insert>
+
+<!--    查看模块-->
+    <select id="selectmodule" resultType="com.example.pojo.entity.StudioModule">
+        select * from thestudio.studio_module
+    </select>
+
+<!--    删除模块-->
+    <delete id="deletemodule" parameterType="com.example.pojo.entity.StudioModule">
+        delete from thestudio.studio_module where module_id = #{module_id}
+    </delete>
+
+<!--    ========================================================================================================================================================================-->
+
+
+<!--    插入标签-->
+    <insert id="inserttag" parameterType="com.example.pojo.entity.StudioTag" >
+        insert into thestudio.studio_tag(tag_id, tag_name, update_time, create_time)
+        VALUES (#{tag_id},#{tag_name},#{update_time},#{create_time})
+    </insert>
+
+<!--    查看标签-->
+    <select id="selecttag" resultType="com.example.pojo.entity.StudioTag">
+        select * from thestudio.studio_tag
+    </select>
+
+    <!--    删除标签-->
+    <delete id="deletetag" parameterType="com.example.pojo.entity.StudioTag">
+        delete from thestudio.studio_tag where tag_id = #{tag_id}
+    </delete>
+
+</mapper>

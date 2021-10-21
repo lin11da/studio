@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OperationLog">
+    <!--    插入日志-->
+    <insert id="insertOperationLog" parameterType="com.example.pojo.other.Operation_Log.RootOperLogAspect">
+        insert into thestudio.studio_operationlog(userid, operModul, operDesc, operType, operUrl, operationip,operationdate, result,errormsg, operationtime, updatetime, createtime)
+        VALUES (#{userid},#{operModul},#{operDesc},#{operType},#{operUrl},#{operationip},#{operationdate},#{result},#{errormsg},#{operationtime},#{updatetime},#{createtime})
+    </insert>
+
+<!--    查看操作日志-->
+    <select id="select_Operation_Log" parameterType="Map" resultType="com.example.pojo.other.Operation_Log.Operation_Log_Up">
+        select * from thestudio.studio_operationlog limit #{startSize},#{pageSize}
+    </select>
+
+</mapper>

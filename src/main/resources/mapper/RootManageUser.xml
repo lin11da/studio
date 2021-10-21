@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RootManageUser">
+<!--    查看所有没有被删除的学生-->
+    <select id="selectalluser" resultType="com.example.pojo.entity.StudioUser">
+        select * from thestudio.studio_user where `delete`=0
+    </select>
+
+<!--    根据手机号码查询用户-->
+    <select id="selectuserbynumber" resultType="com.example.pojo.entity.StudioUser">
+        select * from thestudio.studio_user where `delete`=0 and usernumber = #{usernumber}
+    </select>
+
+<!--    更改用户信息-->
+    <update id="updateuserdate" parameterType="com.example.pojo.entity.StudioUser" >
+        update thestudio.studio_user set password = #{password} , usernumber = #{usernumber},  username = #{username} , update_time = #{update_time} where user_id = #{userid}
+    </update>
+
+<!--    修改用户权限-->
+    <update id="updateusermanage" parameterType="com.example.pojo.entity.StudioUser">
+        update thestudio.studio_user set role = #{role} where user_id = #{userid}
+    </update>
+
+
+</mapper>

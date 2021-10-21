@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.Paper">
+<!--        用户添加文章-->
+        <insert id="insertpaper" parameterType="com.example.pojo.entity.StudioPaper" >
+            insert into thestudio.studio_paper(user_id, paper_id, paper_title, paper_about, paper_img, paperurl, paper_tag, paper_module, `delete`, update_time, create_time)
+            VALUES (#{user_id},#{paper_id},#{paper_title},#{paper_about},#{paper_img},#{paperurl},#{paper_tag},#{paper_module},0,#{update_time},#{create_time})
+        </insert>
+
+<!--    查看所有文章-->
+        <select id="selectpaper" resultType="com.example.pojo.other.TsudioPaperOther">
+            select paper.paper_id,paper.user_id, paper.paper_title, paper.paper_about, paper.paper_img,paperurl, paper.paper_tag, paper.paper_module, paper.update_time, paper.create_time,user.username
+            from thestudio.studio_user user right join  thestudio.studio_paper paper on paper.user_id = user.user_id where paper.delete = 0  limit #{startSize},#{pageSize}
+        </select>
+
+<!--    更新文章-->
+    <update id="updatepaper" parameterType="com.example.pojo.entity.StudioPaper">
+        update thestudio.studio_paper set paper_title = #{paper_title}, paper_about= #{paper_about},
+        paper_img= #{paper_img},paperurl= #{paperurl}, paper_tag= #{paper_tag}, paper_module= #{paper_module}, update_time= #{update_time} where paper_id = #{paper_id}
+    </update>
+
+<!--    逻辑删除文章-->
+    <update id="logicdelectpaper" parameterType="com.example.pojo.other.StudioPaperOther2">
+        update thestudio.studio_paper set `delete` = 1 where paper_id = #{paper_id}
+    </update>
+
+<!--    用paperid进行userid的查询-->
+    <select id="paperidgetuserid" parameterType="com.example.pojo.entity.StudioPaper" resultType="com.example.pojo.entity.StudioPaper">
+        select * from thestudio.studio_paper where paper_id = #{paper_id} and `delete` = 0
+    </select>
+
+
+
+    <!--    根据title查看所有文章-->
+    <select id="selectpaperbytitle" resultType="com.example.pojo.other.TsudioPaperOther">
+        select paper.paper_id,paper.user_id, paper.paper_title, paper.paper_about, paper.paper_img,paperurl, paper.paper_tag, paper.paper_module, paper.update_time, paper.create_time,user.username
+        from thestudio.studio_user user right join  thestudio.studio_paper paper on paper.user_id = user.user_id where paper.delete = 0 and paper_title like concat('%',#{paper_title},'%') limit #{startSize},#{pageSize}
+    </select>
+
+</mapper>

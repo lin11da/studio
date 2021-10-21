@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserLogin">
+    <!--        用户登录-->
+    <select id="userlogin" parameterType="com.example.pojo.entity.StudioUser" resultType="com.example.pojo.entity.StudioUser">
+        select * from thestudio.studio_user where usernumber = #{usernumber} and password = #{password} and disable = 0
+    </select>
+    <!--        根据号码查询信息-->
+    <select id="getrole" parameterType="com.example.pojo.entity.StudioUser" resultType="com.example.pojo.entity.StudioUser">
+        select * from thestudio.studio_user where usernumber = #{usernumber} and disable = 0
+    </select>
+
+    <!--        根据userid查询信息-->
+    <select id="getrole_by_userid" parameterType="com.example.pojo.entity.StudioUser" resultType="com.example.pojo.entity.StudioUser">
+        select * from thestudio.studio_user where user_id = #{user_id} and disable = 0
+    </select>
+
+    <!--        注册用户-->
+    <insert id="registereduser" parameterType="com.example.pojo.entity.StudioUser">
+        insert into thestudio.studio_user(user_id, username, usernumber, password, role,disable,`delete`, update_time, create_time) values (#{user_id},#{username},#{usernumber},#{password},'user:common',0,0,#{update_time},#{create_time})
+    </insert>
+
+<!--    修改用户信息-->
+    <update id="modify_user_information" parameterType="com.example.pojo.entity.StudioUser">
+        update thestudio.studio_user set gender = #{gender} , about = #{adbout},username = #{username},birthday = #{birthday} ,img = #{img},update_time = #{update_time}  where usernumber = #{usernumber}
+    </update>
+
+
+
+</mapper>

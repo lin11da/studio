@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.Log">
+<!--    插入用户登录日志-->
+    <insert id="addloginlog" parameterType="com.example.pojo.entity.StudioUserLoginlog">
+        insert into thestudio.studio_user_loginlog(logid,userid, loginip, loginaddress, logintime, updatetime, createtime)
+        values(#{logid},#{userid},#{loginip},#{loginaddress},#{logintime},#{updatetime},#{createtime})
+    </insert>
+
+<!--    查找管理员登录日志-->
+    <!--    order by createtime desc  从大到小排列-->
+    <select id="selectadminloginlog" parameterType="com.example.pojo.entity.StudioUserLoginlog" resultType="com.example.pojo.entity.StudioUserLoginlog">
+        select * from thestudio.studio_user_loginlog order by createtime desc limit #{pageStart},#{pageSize}
+    </select>
+
+<!--    查找管理员登录日志  by userid-->
+<!--    order by createtime desc  从大到小排列-->
+    <select id="selectadminloginlogbyuserid" parameterType="com.example.pojo.entity.StudioUserLoginlog" resultType="com.example.pojo.entity.StudioUserLoginlog">
+        select * from thestudio.studio_user_loginlog where userid = #{userid} order by createtime desc limit #{pageStart},#{pageSize}
+    </select>
+
+<!--    删除记录-->
+    <delete id="deleteloginlog" parameterType="com.example.pojo.entity.StudioUserLoginlog">
+        DELETE  FROM thestudio.studio_user_loginlog
+        WHERE logid = #{logid}
+    </delete>
+
+
+</mapper>

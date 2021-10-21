@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.SuperManage">
+
+<!--    超级管理员插入一级权限-->
+    <insert id="insertrole" parameterType="com.example.pojo.entity.StudioOneroute">
+        insert into thestudio.studio_oneroute(route_id, route_name, route_url, update_time, create_time)
+        values (#{route_id},#{route_name},#{route_url},#{update_time},#{create_time})
+    </insert>
+
+<!--    查看是否存在一级权限-->
+    <select id="selectonerole" parameterType="com.example.pojo.entity.StudioOneroute" resultType="com.example.pojo.entity.StudioOneroute">
+        select * from thestudio.studio_oneroute where route_id = #{route_id}
+    </select>
+
+    <!--    超级管理员插入二级权限-->
+    <insert id="inserttworole" parameterType="com.example.pojo.entity.StudioOneroute">
+        insert into thestudio.studio_tworoute(one_route_id, route_id, route_name, route_url, update_time, create_time)
+        VALUES (#{one_route_id},#{route_id},#{route_name},#{route_url},#{update_time},#{create_time})
+    </insert>
+
+<!--    超级管理员给普通管理员赋予权限-->
+    <update id="setpermission" parameterType="com.example.pojo.entity.StudioRoot">
+        update thestudio.studio_root set one_route = #{one_route},two_route = #{two_route}, update_time=#{updateTime} where user_id = #{user_id}
+    </update>
+
+
+    <select id="selectoneroledate" parameterType="com.example.pojo.entity.StudioOneroute" resultType="com.example.pojo.entity.StudioOneroute">
+        select * from thestudio.studio_oneroute where route_id = #{route_id}
+    </select>
+
+
+    <select id="selecttworoledate" parameterType="com.example.pojo.entity.StudioTworoute" resultType="com.example.pojo.entity.StudioTworoute">
+        select * from thestudio.studio_tworoute where route_id = #{route_id}
+    </select>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RootLogin">
+<!--        管理员登录-->
+        <select id="rootlogin" parameterType="com.example.pojo.entity.StudioRoot" resultType="com.example.pojo.entity.StudioRoot">
+                select * from thestudio.studio_root where usernumber = #{usernumber} and password = #{password} and disable = 0
+        </select>
+
+<!--        根据号码查询信息-->
+        <select id="getrole" parameterType="com.example.pojo.entity.StudioRoot" resultType="com.example.pojo.entity.StudioRoot">
+                select * from thestudio.studio_root where usernumber = #{usernumber} and disable = 0
+        </select>
+
+        <!--        根据user_id查询信息-->
+        <select id="getrolebyuserid" parameterType="com.example.pojo.entity.StudioRoot" resultType="com.example.pojo.entity.StudioRoot">
+                select * from thestudio.studio_root where user_id = #{user_id} and disable = 0
+        </select>
+        
+<!--        注册管理员-->
+        <insert id="registered" parameterType="com.example.pojo.entity.StudioRoot">
+                insert into thestudio.studio_root(user_id, username, usernumber, password, role,disable, update_time, create_time) values (#{user_id},#{username},#{usernumber},#{password},#{role},0,#{update_time},#{create_time})
+        </insert>
+
+</mapper>

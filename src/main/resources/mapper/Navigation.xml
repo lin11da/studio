@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.NavigationOperation">
+<!--    查看一级导航-->
+    <select id="select_nav_one" resultType="com.example.pojo.other.nav.NavO_Root">
+        select * from thestudio.studio_oneroute
+    </select>
+
+    <!--    查看二级导航-->
+    <select id="select_nav_two" parameterType="com.example.pojo.other.nav.NavO" resultType="com.example.pojo.other.nav.NavO_two">
+        select * from thestudio.studio_tworoute where one_route_id = #{one_route_id}
+    </select>
+
+    <!--    根据twoid查询该导航信息-->
+    <select id="select_char_two_nav" parameterType="com.example.pojo.other.nav.NavO" resultType="com.example.pojo.other.nav.NavO">
+        select * from thestudio.studio_tworoute where route_id = #{route_id}
+    </select>
+
+    <!--    根据oneid查询该导航是否存在-->
+    <select id="select_char_one_nav" parameterType="com.example.pojo.other.nav.NavO" resultType="com.example.pojo.other.nav.NavO">
+        select * from thestudio.studio_oneroute where route_id = #{route_id}
+    </select>
+
+
+</mapper>
