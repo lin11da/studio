@@ -187,5 +187,26 @@ public class SupperManage {
     }
 
 
+    /**
+     * 查看某个账号的导航
+     * @param number
+     * @return
+     */
+    @SaCheckRole("admin:*")
+    @GetMapping("/admin/select_nav")
+    public Userreturn select_nav(@RequestParam("number")String number){
+        StudioRoot getrole = rootLogin.getrole(number+"type");
+        String oneRoute = getrole.getOneRoute();
+        String twoRoute = getrole.getTwoRoute();
+
+        Map<String, Object> map = new HashMap<>();
+        Object rootlogin1 = roletoList.rootlogin(oneRoute,twoRoute);
+        map.put("nav",rootlogin1);
+        return new Userreturn<>(map);
+    }
+
+
+
+
 
 }

@@ -151,4 +151,28 @@
         delete from thestudio.studio_tag where tag_id = #{tag_id}
     </delete>
 
+
+<!--    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+<!--    插入作品-->
+    <insert id="insert_work" parameterType="com.example.pojo.other.Operation_Log.StudioWorks">
+        insert into thestudio.studio_works(workid, work_name, work_about, work_time, work_html, updatetime, createtime)
+         VALUES (#{workid},#{work_name},#{work_about},#{work_time},#{work_html},#{updatetime},#{createtime})
+    </insert>
+
+<!--    插入作品——图片-->
+    <update id="insert_work_img" parameterType="com.example.pojo.other.Operation_Log.StudioWorks" >
+        update thestudio.studio_works set work_img = #{work_img} where workid = #{workid}
+    </update>
+
+<!--    查看全部作品-->
+    <select id="select_work" resultType="com.example.pojo.other.Operation_Log.StudioWorks" >
+        select * from thestudio.studio_works
+    </select>
+
+<!--    删除作品-->
+    <delete id="delete_works" parameterType="com.example.pojo.other.Operation_Log.StudioWorks">
+        delete from thestudio.studio_works where workid = #{workid}
+    </delete>
+
 </mapper>

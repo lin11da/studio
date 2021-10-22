@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.pojo.entity.*;
+import com.example.pojo.other.Operation_Log.StudioWorks;
 import com.example.pojo.other.TsudioPaperOther;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -275,5 +276,38 @@ public interface Other {
      */
     Integer deletetag(String tag_id);
 
+    /**
+     * 插入作品
+     * @param workid
+     * @param work_name
+     * @param work_about
+     * @param work_time
+     * @param work_html
+     * @param updatetime
+     * @param createtime
+     * @return
+     */
+    Integer insert_work(String workid,String work_name,String work_about,String work_time,String work_html,String updatetime,String createtime);
+
+    /**
+     * 插入作品——图片
+     * @param workid
+     * @param work_img
+     * @return
+     */
+    Integer insert_work_img(String workid,String work_img);
+
+    /**
+     * 查看全部作品
+     * @return
+     */
+    List<StudioWorks> select_work();
+
+    /**
+     * 删除作品
+     * @param workid
+     * @return
+     */
+    Integer delete_works(String workid);
 
 }

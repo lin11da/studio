@@ -52,6 +52,7 @@ public class RoletoList {
                 map.put("label",one_label);
                 map.put("url",url);
                 map.put("id",oneid_mysql1);
+                map.put("icon",navO_one.getIcon());
 
                 for (String s1 : twoid_list) {
                     NavO navO = navigationOperation.select_char_two_nav(s1);

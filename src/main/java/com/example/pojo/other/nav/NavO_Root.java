@@ -15,7 +15,15 @@ public class NavO_Root {
     private String routeId;
     private String routeName;
     private String routeUrl;
+    private String icon;
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
     public String getOnerouteId() {
         return onerouteId;
